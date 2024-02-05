@@ -1,0 +1,8 @@
+<div class="card">
+  <div class="card-body">
+    <input type="checkbox" [checked]="todo?.completed" />
+    <span>{{ todo?.title }}</span>
+    <span>{{ todo?.description }}</span>
+    <button class="button" (click)="removeTodo()">Remove</button>
+  </div>
+</div>

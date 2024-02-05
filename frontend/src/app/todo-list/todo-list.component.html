@@ -1,0 +1,45 @@
+<div *ngIf="!createNewTodo">
+  <button data-cy="createTodoButton" class="button is-primary m-2" (click)="createTodo()">Create A Todo</button>
+</div>
+
+<hr>
+
+<div *ngIf="createNewTodo" class="columns">
+  <div class="column is-4">
+    <label class="label ml-2" for="newTitle">Title:</label>
+    <input data-cy="newTodoTitleInput" id="newTitle" class="input m-2" [(ngModel)]="newTodoTitle" placeholder="Enter a new todo title" />
+    <label class="label ml-2" for="newDescription">Description:</label>
+    <textarea data-cy="newTodoDescriptionInput" id="newDescription" class="textarea m-2" [(ngModel)]="newTodoDescription" placeholder="Enter a description"></textarea>
+    <button data-cy="addTodoButton" class="button is-primary m-2" (click)="addTodo()">Add Todo</button>
+    <button data-cy="cancelTodoButton" (click)="cancelAdd()" class="button is-danger m-2">Cancel</button>
+  </div>
+</div>
+
+<hr>
+
+<div data-cy=todosList *ngFor="let todo of todos" class="box">
+  <div *ngIf="!todo.editMode" class="columns is-vcentered">
+    <div class="column is-4">
+      <div style="display: block">
+        <input type="checkbox" [(ngModel)]="todo.completed" (change)="toggleCompleted(todo)" />
+        <span data-cy="newTodoTitle" class="title is-5 pl-3">{{ todo.title }}</span>
+      </div>
+      <span data-cy="newTodoDescription" style="display: block" class="subtitle is-5 pl-5">{{ todo.description }}</span>
+    </div>
+    <div class="column">
+      <button data-cy="editTodoButton" (click)="editTodo(todo)" class="button is-info mr-2">Edit</button>
+      <button data-cy="removeTodoButton" (click)="removeTodo(todo.id)" class="button is-danger">Remove</button>
+    </div>
+  </div>
+  <div *ngIf="todo.editMode" class="columns is-vcentered">
+    <div class="column is-4">
+      <label class="label ml-2" for="editTitle">Title:</label>
+      <input data-cy=editTitleInput id="editTitle" [(ngModel)]="todo.title" placeholder="Enter a new title" class="input m-2" />
+      <label class="label ml-2" for="editDescription">Description:</label>
+      <textarea data-cy="editDescriptionInput" id="editDescription" [(ngModel)]="todo.description" placeholder="Enter a description" class="textarea m-2"></textarea>
+      <button data-cy="saveTodoButton" (click)="saveTodo(todo)" class="button is-success ml-2 mr-2">Save</button>
+      <button data-cy="cancelEditButton" (click)="cancelEdit(todo)" class="button is-danger">Cancel</button>
+    </div>
+  </div>
+</div>
+

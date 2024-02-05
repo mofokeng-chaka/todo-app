@@ -7,9 +7,15 @@
 /bazel-out
 
 # Node
-/node_modules
+/frontend/node_modules
 npm-debug.log
 yarn-error.log
+
+#Python
+/backend/.venv
+/backend/venv
+/backend/.pytest_cache
+/backend/todos.db
 
 # IDEs and editors
 .idea/
@@ -19,6 +25,7 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+/frontend/.angular
 
 # Visual Studio Code
 .vscode/*
